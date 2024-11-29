@@ -9,7 +9,7 @@ export function User(){
 
     const to = useCallback(()=>{
         //@ts-ignore
-        navi.navigate("userinfo")
+        navi.navigate("Userinfo")
     },[])
 
     return <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>

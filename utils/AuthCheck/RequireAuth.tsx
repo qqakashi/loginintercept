@@ -5,8 +5,8 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 interface RequireState {
     children: React.JSX.Element; 
     path: string;
-    isTab?: boolean;
 }
+
 
 
 /**中间件，用于包裹需要登录拦截路由，判断当前登录状态并执行登录拦截 */
@@ -14,17 +14,14 @@ function RequireAuth(props: RequireState){
     const { isLoggedIn } = useAuth();
     const navigation = useNavigation();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         navigation.addListener("focus",loadCheck)
-        return()=>{
-            navigation.removeListener("focus", loadCheck)
-        }
-    }, []);
+    }, [isLoggedIn]);
 
     const loadCheck = useCallback(()=>{
-        console.log(isLoggedIn);
+        console.log("是否登录："+isLoggedIn);
         if (!isLoggedIn) {
-            navigation.dispatch(StackActions.replace('login', {check: true, path: props.path, isTab: props.isTab }));
+            navigation.dispatch(StackActions.replace('Login', {path: props.path}));
         }
     },[isLoggedIn])
 

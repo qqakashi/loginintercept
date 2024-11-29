@@ -1,6 +1,6 @@
 import { NavigationProp, NavigationState, StackActions, TabActions, useNavigation, useRoute } from "@react-navigation/native";
-import { useCallback } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { useCallback, useEffect } from "react";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 import { useAuth } from "../utils/AuthCheck/AuthContext";
 
 
@@ -10,25 +10,16 @@ interface naviState extends Omit<NavigationProp<ReactNavigation.RootParamList>, 
     getState(): NavigationState | undefined;
 }
 
+
 export default function Login(){
-    const { isLoggedIn, login } = useAuth();
+    const { login } = useAuth();
     const route = useRoute();
     const navigation = useNavigation<naviState>();
-    
     const loginto = useCallback(()=>{
-        const { check, path, isTab } = route.params as any
+        const { path } = route.params as any
         const params = {}
-        if (check) {
-            login();
-            if (isTab) {
-                navigation.replace('tab', {screen: path});
-            } else {
-                navigation.replace(path);
-            }
-        } else {
-            login();
-            navigation.goBack()
-        }
+        login();
+        navigation.replace(path);
     },[])
 
     return <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>

@@ -16,21 +16,21 @@ const Stack = createStackNavigator();
 function RootTabs() {
     return (
         <Tab.Navigator screenOptions={{tabBarActiveTintColor: "tomato", tabBarInactiveTintColor: "gray", tabBarLabelStyle: {marginTop: 5}}}>
-            <Tab.Screen name="home" component={Home} options={{
+            <Tab.Screen name="Home" component={Home} options={{
                     headerShown: true,
                     headerTitle: "首页",
                     tabBarLabel: "首页",
                     tabBarIcon: ({focused, color, size})=> <View style={{width: size, height: size, backgroundColor: focused? color : "gray"}} /> 
                 }} 
             />
-            <Tab.Screen name="seting" component={Seting} options={{
+            <Tab.Screen name="Seting" component={Seting} options={{
                     headerShown: true,
                     headerTitle: "设置",
                     tabBarLabel: "设置",
                     tabBarIcon: ({focused, color, size})=> <View style={{width: size, height: size, backgroundColor: focused? color : "gray"}} /> 
                 }} 
             />
-            <Tab.Screen name="user" component={User} options={{
+            <Tab.Screen name="User" component={User} options={{
                     headerShown: true,
                     headerTitle: "我的",
                     tabBarLabel: "我的",
@@ -42,15 +42,15 @@ function RootTabs() {
 }
 
 function StackRoute(){
-    return <Stack.Navigator initialRouteName='tab' screenOptions={{headerShown: false, gestureEnabled: true}}>
-        <Stack.Screen name='tab' component={RootTabs} options={{headerTitle: "首页"}} />
-        <Stack.Screen name='login' component={Login} options={{headerTitle: "登录", headerShown: true}} />
-        <Stack.Screen name='userinfo' options={{headerTitle: "用户详情", headerShown: true}}>
-            {()=>(<RequireAuth path='userinfo'>
+    return <Stack.Navigator initialRouteName='Tab' screenOptions={{headerShown: false, gestureEnabled: true}}>
+        <Stack.Screen name='Tab' component={RootTabs} options={{headerTitle: "我的"}} />
+        <Stack.Screen name='Login' component={Login} options={{headerTitle: "登录", headerShown: true}} />
+        <Stack.Screen name='Userinfo' options={{headerTitle: "用户详情", headerShown: true}}>
+            {()=>(<RequireAuth path='Userinfo'>
                 <UserInfo />
             </RequireAuth>)}
         </Stack.Screen>
-        <Stack.Screen name='detail' component={Detail} options={{headerTitle: "详情", headerShown: true}} />
+        <Stack.Screen name='Detail' component={Detail} options={{headerTitle: "详情", headerShown: true}} />
     </Stack.Navigator>
 }
 
